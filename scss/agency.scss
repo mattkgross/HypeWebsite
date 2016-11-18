@@ -41,7 +41,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: darken($theme-primary, 10%);
+    color: $theme-secondary;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -64,13 +64,13 @@ h1, h2, h3, h4, h5, h6 {
 // Restyled Primary Buttons
 
 .btn-primary {
-    @include button-variant(white, $theme-primary, $theme-primary);
+    @include button-variant($theme-secondary, $theme-primary, $theme-primary);
     @include heading-font;
     font-weight: 700;
 }
 
 .btn-xl {
-    @include button-variant(white, $theme-primary, $theme-primary);
+    @include button-variant($theme-secondary, $theme-primary, $theme-primary);
     @include heading-font;
     font-weight: 700;
     border-radius: 3px;
@@ -85,12 +85,18 @@ h1, h2, h3, h4, h5, h6 {
     border-color: transparent;
     .navbar-brand {
         color: $theme-primary;
-        @include script-font;
-        &:hover,
-        &:focus,
+        font-weight: bold;
+        text-transform: uppercase;
+        @include heading-font;
+        &:hover {
+            color: darken($theme-primary, 10%);
+        }
+        &:focus {
+            color: $theme-secondary;
+        }
         &:active,
         &.active {
-            color: darken($theme-primary, 10%);
+            color: $theme-primary;
         }
     }
     .navbar-collapse {
@@ -98,11 +104,13 @@ h1, h2, h3, h4, h5, h6 {
     }
     .navbar-toggle {
         background-color: $theme-primary;
-        border-color: $theme-primary;
+        border-color: $theme-secondary;
         @include heading-font;
-        color: white;
+        color: $theme-secondary;
         font-size: 12px;
-        &:hover,
+        &:hover {
+            background-color: darken($theme-primary, 10%);
+        }
         &:focus {
             background-color: $theme-primary;
         }
@@ -113,7 +121,7 @@ h1, h2, h3, h4, h5, h6 {
                 @include heading-font;
                 font-weight: 400;
                 letter-spacing: 1px;
-                color: white;
+                color: $theme-secondary;
                 &:hover,
                 &:focus {
                     color: $theme-primary;
@@ -124,13 +132,13 @@ h1, h2, h3, h4, h5, h6 {
     }
     .navbar-nav>.active>a {
         border-radius: 0;
-        color: white;
+        color: $theme-secondary;
         background-color: $theme-primary;
     }
     .navbar-nav>.active>a:hover,
     .navbar-nav>.active>a:focus {
-        color: white;
-        background-color: darken($theme-primary, 10%);
+        color: $theme-secondary;
+        background-color: $theme-primary;
     }
 }
 
@@ -174,6 +182,7 @@ header {
     @include background-cover;
     text-align: center;
     color: white;
+    min-height: 800px;
     .intro-text {
         padding-top: 100px;
         padding-bottom: 50px;
@@ -238,7 +247,7 @@ section {
 
 @media(min-width:768px) {
     section {
-        padding: 150px 0;
+        padding: 75px 0;
     }
 }
 
@@ -249,77 +258,12 @@ section {
     text-transform: none;
 }
 
-// Portfolio Section
-
-#portfolio {
-    .portfolio-item {
-        margin: 0 0 15px;
-        right: 0;
-        .portfolio-link {
-            display: block;
-            position: relative;
-            max-width: 400px;
-            margin: 0 auto;
-            .portfolio-hover {
-                background: fade-out($theme-primary, .9);
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                transition: all ease 0.5s;
-                -webkit-transition: all ease 0.5s;
-                -moz-transition: all ease 0.5s;
-                &:hover {
-                    opacity: 1;
-                }
-                .portfolio-hover-content {
-                    position: absolute;
-                    width: 100%;
-                    height: 20px;
-                    font-size: 20px;
-                    text-align: center;
-                    top: 50%;
-                    margin-top: -12px;
-                    color: white;
-                    i {
-                        margin-top: -12px;
-                    }
-                    h3,
-                    h4 {
-                        margin: 0;
-                    }
-                }
-            }
-        }
-        .portfolio-caption {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: white;
-            text-align: center;
-            padding: 25px;
-            h4 {
-                text-transform: none;
-                margin: 0;
-            }
-            p {
-                @include serif-font;
-                font-style: italic;
-                font-size: 16px;
-                margin: 0;
-            }
-        }
-    }
-    * {
-        z-index: 2;
-    }
-}
-
-@media(min-width:767px) {
-    #portfolio {
-        .portfolio-item {
-            margin: 0 0 30px;
-        }
-    }
+.callahan-video {
+   width: 280px;
+   height: 158px;
+   position: relative;
+   top: 10px;
+   margin: 0px auto;
 }
 
 // Timeline
@@ -426,12 +370,19 @@ section {
 }
 
 @media(min-width:768px) {
+    .callahan-video {
+       width: 420px;
+       height: 237px;
+       position: relative;
+       top: 30px;
+       margin: auto;
+    }
     .timeline {
         &:before {
             left: 50%;
         }
         > li {
-            margin-bottom: 100px;
+            margin-bottom: 40px;
             min-height: 100px;
             .timeline-panel {
                 width: 41%;
@@ -460,6 +411,13 @@ section {
 }
 
 @media(min-width:992px) {
+    .callahan-video {
+       width: 560px;
+       height: 315px;
+       position: relative;
+       top: 30px;
+       margin: auto;
+    }
     .timeline {
         > li {
             min-height: 150px;
@@ -512,7 +470,9 @@ section {
     margin-bottom: 50px;
     img {
         margin: 0 auto;
-        border: 7px solid white;
+        border: 7px solid $theme-primary;
+        max-width: 75%;
+        max-height: 75%;
     }
     h4 {
         margin-top: 25px;
@@ -634,83 +594,6 @@ ul.social-buttons {
 .btn.active,
 .btn:active:focus {
     outline: none;
-}
-
-.portfolio-modal {
-    .modal-dialog{
-        margin: 0;
-        height: 100%;
-        width: auto;
-    }
-    .modal-content {
-        border-radius: 0;
-        background-clip: border-box;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        border: none;
-        min-height: 100%;
-        padding: 100px 0;
-        text-align: center;
-        h2 {
-            margin-bottom: 15px;
-            font-size: 3em;
-        }
-        p {
-            margin-bottom: 30px;
-        }
-        p.item-intro {
-            margin: 20px 0 30px;
-            @include serif-font;
-            font-style: italic;
-            font-size: 16px;
-        }
-        ul.list-inline {
-            margin-bottom: 30px;
-            margin-top: 0;
-        }
-        img {
-            margin-bottom: 30px;
-        }
-    }
-    .close-modal {
-        position: absolute;
-        width:75px;
-        height:75px;
-        background-color:transparent;
-        top: 25px;
-        right: 25px;
-        cursor: pointer;
-        &:hover {
-            opacity: 0.3;
-        }
-        .lr {
-            height:75px;
-            width:1px;
-            margin-left:35px;
-            background-color:$gray-darker;
-            transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            /* IE 9 */
-            -webkit-transform: rotate(45deg);
-            /* Safari and Chrome */
-            z-index:1051;
-            .rl {
-                height:75px;
-                width:1px;
-                background-color:$gray-darker;
-                transform: rotate(90deg);
-                -ms-transform: rotate(90deg);
-                /* IE 9 */
-                -webkit-transform: rotate(90deg);
-                /* Safari and Chrome */
-                z-index:1052;
-            }
-        }
-    }
-    .modal-backdrop {
-        opacity: 0;
-        display: none;
-    }
 }
 
 // Highlight Color Customization
